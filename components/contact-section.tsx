@@ -53,7 +53,7 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       // cоздаем ссылку на telegram
-      const telegramUrl = `https://t.me/of_slava?text=${envcodedMessage}`
+      const telegramUrl = `https://t.me/of_slava?text=${encodedMessage}`
 
       // Для телефона Iphone/ipad.....
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) (
