@@ -39,7 +39,7 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
     try {
       // Формируем сообщение для Telegram
       const message =
-        🔥 Новая заявка с сайта EliteFansOnly!\n\n +
+         Новая заявка с сайта EliteFansOnly!\n\n +
         👤 Имя: ${formData.name}\n +
         📱 Контакт: ${formData.contact}\n +
         💼 Роль: ${formData.role}\n +
