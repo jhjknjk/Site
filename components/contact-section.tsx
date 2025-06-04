@@ -57,9 +57,9 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
 
       // Для мобильных устройств используем прямое перенаправление
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  window.location.href = telegramUrl
-     } else {
-  
+        // На мобильных устройствах используем location.href
+        window.location.href = telegramUrl
+      } else {
         // На десктопе открываем в новой вкладке
         window.open(telegramUrl, "_blank")
       }
