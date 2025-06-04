@@ -52,6 +52,18 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
       // Имитация отправки
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
+      // cоздаем ссылку на telegram
+      const telegramUrl = `https://t.me/of_slava?text=${envcodedMessage}`
+
+      // Для телефона Iphone/ipad.....
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) (
+        // Для моб location.href
+        window. location.href = telegramUrl
+      } else {  
+        // на десктопе открываем  в новой вкладке
+        window.open(telegramUrl, "_blank")
+      }
+         
       // Открываем Telegram с предзаполненным сообщением
       window.open(`https://t.me/of_slava?text=${encodedMessage}`, "_blank")
 
@@ -104,6 +116,22 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
               </div>
             </AnimatedSection>
 
+            {/* кнопка */}
+            <AnimatedSection animation="fadeInUp" delay={200}> 
+              <div className="text-center mb-6">
+                <button
+                  onClick={handleQuickContact}
+                  className="inline-flex items-center bg-white/20 backdrop-blur-lg hover:bg white/30 text-white font-bold px-6 py-3
+                  rounded-full transition-a:ll duration-300 shadow-lg tap-highlight-none active:scale-95 border border-white/30"
+                  >
+                    <i className="fab fa-telegram mr-2 text-lg"></i>
+                    Написать в Telegram
+                    <i className="fas fa-external-link-alt ml-2 text-sm"></i>
+                  </button>
+                  <p className="text-sm opaciti-75 mt-2">Или заполни подробную форму ниже ⬇️</p>
+                </div>
+              </AnimatedSection>
+                
             <AnimatedSection animation="fadeInUp" delay={300}>
               <div className="relative">
                 {/* Упрощенные декоративные элементы для мобильных */}
