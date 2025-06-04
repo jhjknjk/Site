@@ -50,22 +50,19 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
       const encodedMessage = encodeURIComponent(message)
 
       // Имитация отправки
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      // cоздаем ссылку на telegram
+      // Создаем ссылку на Telegram
       const telegramUrl = `https://t.me/of_slava?text=${encodedMessage}`
 
-      // Для телефона Iphone/ipad.....
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) (
-        // Для моб location.href
-        window. location.href = telegramUrl
-      } else {  
-        // на десктопе открываем  в новой вкладке
+      // Для мобильных устройств используем прямое перенаправление
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // На мобильных устройствах используем location.href
+        window.location.href = telegramUrl
+      } else {
+        // На десктопе открываем в новой вкладке
         window.open(telegramUrl, "_blank")
       }
-         
-      // Открываем Telegram с предзаполненным сообщением
-      window.open(`https://t.me/of_slava?text=${encodedMessage}`, "_blank")
 
       // Вызываем функцию обратного вызова для отображения модального окна
       if (onFormSubmit) {
@@ -81,9 +78,30 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
       })
     } catch (error) {
       console.error("Error submitting form:", error)
-      alert("Произошла ошибка. Пожалуйста, напишите нам напрямую в Telegram: @of_slava")
+      // Резервный вариант - прямая ссылка
+      const message =
+        `🔥 Новая заявка с сайта EliteFansOnly!\n\n` +
+        `👤 Имя: ${formData.name}\n` +
+        `📱 Контакт: ${formData.contact}\n` +
+        `💼 Роль: ${formData.role}\n` +
+        `💬 Сообщение: ${formData.message || "Не указано"}`
+
+      const encodedMessage = encodeURIComponent(message)
+      window.location.href = `https://t.me/of_slava?text=${encodedMessage}`
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  // Функция для быстрого перехода в Telegram без заполнения формы
+  const handleQuickContact = () => {
+    const quickMessage = "Привет! Хочу узнать больше о работе с EliteFansOnly 🚀"
+    const encodedMessage = encodeURIComponent(quickMessage)
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location.href = `https://t.me/of_slava?text=${encodedMessage}`
+    } else {
+      window.open(`https://t.me/of_slava?text=${encodedMessage}`, "_blank")
     }
   }
 
@@ -116,28 +134,23 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
               </div>
             </AnimatedSection>
 
-            {/* кнопка */}
-            <AnimatedSection animation="fadeInUp" delay={200}> 
+            {/* Быстрая кнопка для связи */}
+            <AnimatedSection animation="fadeInUp" delay={200}>
               <div className="text-center mb-6">
                 <button
                   onClick={handleQuickContact}
-                  className="inline-flex items-center bg-white/20 backdrop-blur-lg hover:bg white/30 text-white font-bold px-6 py-3
-                  rounded-full transition-a:ll duration-300 shadow-lg tap-highlight-none active:scale-95 border border-white/30"
-                  >
-                    <i className="fab fa-telegram mr-2 text-lg"></i>
-                    Написать в Telegram
-                    <i className="fas fa-external-link-alt ml-2 text-sm"></i>
-                  </button>
-                  <p className="text-sm opaciti-75 mt-2">Или заполни подробную форму ниже ⬇️</p>
-                </div>
-              </AnimatedSection>
-                
+                  className="inline-flex items-center bg-white/20 backdrop-blur-lg hover:bg-white/30 text-white font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-lg tap-highlight-none active:scale-95 border border-white/30"
+                >
+                  <i className="fab fa-telegram mr-2 text-lg"></i>
+                  Написать сразу в Telegram
+                  <i className="fas fa-external-link-alt ml-2 text-sm"></i>
+                </button>
+                <p className="text-sm opacity-75 mt-2">Или заполни подробную форму ниже ⬇️</p>
+              </div>
+            </AnimatedSection>
+
             <AnimatedSection animation="fadeInUp" delay={300}>
               <div className="relative">
-                {/* Упрощенные декоративные элементы для мобильных */}
-                <div className="hidden md:block absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full animate-bounce"></div>
-                <div className="hidden md:block absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
-
                 <form
                   className="bg-white/95 backdrop-blur-lg rounded-2xl md:rounded-3xl shadow-2xl p-4 md:p-8 text-gray-800 border border-white/20"
                   onSubmit={handleSubmit}
@@ -145,10 +158,10 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
                   {/* Компактный заголовок формы */}
                   <div className="text-center mb-6 md:mb-8">
                     <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full mb-3 md:mb-4 animate-pulse-slow">
-                      <i className="fab fa-telegram text-lg md:text-2xl text-white"></i>
+                      <i className="fas fa-file-alt text-lg md:text-2xl text-white"></i>
                     </div>
                     <h3 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                      Оставить заявку
+                      Подробная заявка
                     </h3>
                   </div>
 
@@ -278,18 +291,17 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
                       {isSubmitting ? (
                         <>
                           <div className="animate-spin rounded-full h-5 w-5 md:h-6 md:w-6 border-b-2 border-white mr-3"></div>
-                          <span>Отправляем...</span>
+                          <span>Отправляем в Telegram...</span>
                         </>
                       ) : (
                         <>
                           <i className="fab fa-telegram mr-3 text-lg md:text-xl"></i>
-                          <span>Отправить заявку</span>
-                          <i className="fas fa-arrow-right ml-3 animate-bounce"></i>
+                          <span>Отправить в Telegram</span>
+                          <i className="fas fa-external-link-alt ml-3"></i>
                         </>
                       )}
                     </div>
 
-                    {/* Упрощенные эффекты для мобильных */}
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
 
                     {!isSubmitting && (
@@ -302,9 +314,8 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
 
                   <div className="text-center mt-4 md:mt-6">
                     <p className="text-xs md:text-sm text-gray-500 flex items-center justify-center flex-wrap">
-                      <i className="fas fa-info-circle mr-2 text-blue-400"></i>
-                      <span>Откроет Telegram с сообщением для</span>
-                      <span className="font-bold text-blue-600 ml-1">@of_slava</span>
+                      <i className="fas fa-mobile-alt mr-2 text-green-500"></i>
+                      <span>Откроет Telegram приложение с готовым сообщением</span>
                     </p>
                   </div>
                 </form>
