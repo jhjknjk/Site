@@ -39,12 +39,12 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
     try {
       // Формируем сообщение для Telegram
       const message =
-        `🔥 Новая заявка с сайта EliteFansOnly!\n\n` +
-        `👤 Имя: ${formData.name}\n` +
-        `📱 Контакт: ${formData.contact}\n` +
-        `💼 Роль: ${formData.role}\n` +
-        `💬 Сообщение: ${formData.message || "Не указано"}\n\n` +
-        `⏰ Время: ${new Date().toLocaleString("ru-RU")}`
+        🔥 Новая заявка с сайта EliteFansOnly!\n\n +
+        👤 Имя: ${formData.name}\n +
+        📱 Контакт: ${formData.contact}\n +
+        💼 Роль: ${formData.role}\n +
+        💬 Сообщение: ${formData.message || "Не указано"}\n\n +
+        ⏰ Время: ${new Date().toLocaleString("ru-RU")}
 
       // Кодируем сообщение для URL
       const encodedMessage = encodeURIComponent(message)
@@ -53,7 +53,7 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
       // Создаем ссылку на Telegram
-      const telegramUrl = `https://t.me/of_slava?text=${encodedMessage}`
+      const telegramUrl = https://t.me/of_slava?text=${encodedMessage}
 
       // Для мобильных устройств используем прямое перенаправление
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -80,14 +80,14 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
       console.error("Error submitting form:", error)
       // Резервный вариант - прямая ссылка
       const message =
-        `🔥 Новая заявка с сайта EliteFansOnly!\n\n` +
-        `👤 Имя: ${formData.name}\n` +
-        `📱 Контакт: ${formData.contact}\n` +
-        `💼 Роль: ${formData.role}\n` +
-        `💬 Сообщение: ${formData.message || "Не указано"}`
+        🔥 Новая заявка с сайта EliteFansOnly!\n\n +
+        👤 Имя: ${formData.name}\n +
+        📱 Контакт: ${formData.contact}\n +
+        💼 Роль: ${formData.role}\n +
+        💬 Сообщение: ${formData.message || "Не указано"}
 
       const encodedMessage = encodeURIComponent(message)
-      window.location.href = `https://t.me/of_slava?text=${encodedMessage}`
+      window.location.href = https://t.me/of_slava?text=${encodedMessage}
     } finally {
       setIsSubmitting(false)
     }
@@ -99,12 +99,11 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
     const encodedMessage = encodeURIComponent(quickMessage)
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      window.location.href = `https://t.me/of_slava?text=${encodedMessage}`
+      window.location.href = https://t.me/of_slava?text=${encodedMessage}
     } else {
-      window.open(`https://t.me/of_slava?text=${encodedMessage}`, "_blank")
+      window.open(https://t.me/of_slava?text=${encodedMessage}, "_blank")
     }
   }
-
   return (
     <section id="contact" className="relative overflow-hidden">
       {/* Упрощенный анимированный фон для мобильных */}
@@ -164,7 +163,6 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
                       Подробная заявка
                     </h3>
                   </div>
-
                   {/* Мобильная сетка - одна колонка на телефонах */}
                   <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 mb-4 md:mb-6">
                     <div className="relative group">
@@ -219,7 +217,6 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
                       )}
                     </div>
                   </div>
-
                   <div className="mb-4 md:mb-6 relative group">
                     <label htmlFor="role" className="block font-medium mb-2 text-sm md:text-base text-gray-700">
                       <i className="fas fa-briefcase mr-2 text-purple-500"></i>Я хочу работать как*
@@ -278,7 +275,6 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
                       <span className="text-xs">Согласие на обработку данных</span>
                     </div>
                   </div>
-
                   {/* Большая кнопка для мобильных */}
                   <button
                     type="submit"
@@ -340,7 +336,6 @@ export default function ContactSection({ onFormSubmit }: ContactSectionProps) {
                   <h4 className="font-bold text-base md:text-lg mb-1 md:mb-2">Бесплатно</h4>
                   <p className="text-xs md:text-sm opacity-90">Консультация без оплаты</p>
                 </div>
-
                 <div className="bg-white/10 backdrop-blur-lg rounded-xl md:rounded-2xl p-4 md:p-6 text-center border border-white/20">
                   <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-blue-400 rounded-full mb-3 md:mb-4 animate-ping">
                     <i className="fas fa-shield-alt text-lg md:text-xl text-gray-900"></i>
